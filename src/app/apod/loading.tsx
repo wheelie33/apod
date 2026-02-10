@@ -17,7 +17,7 @@ export default function Loading() {
                 Loading NASA Astronomy Picture of the Day...
             </Typography>
             <Typography variant="body2" color="text.secondary">
-                Fetching data from NASA API
+                Calling NASA API
             </Typography>
         </Box>
     );
