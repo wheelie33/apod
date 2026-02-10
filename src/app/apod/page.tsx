@@ -60,6 +60,9 @@ export default async function ApodPage() {
                     </Typography>
                     {apodData.media_type === 'image' && (
                         <Box
+                        border={1}
+                        borderColor="grey.300"
+                        borderRadius={2}
                             component="img"
                             src={apodData.hdurl}
                             alt={apodData.title}
