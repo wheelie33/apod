@@ -63,7 +63,6 @@ export default async function ApodPage() {
                             border={2}
                             borderColor="primary.main"
                             borderRadius={2}
-                            overflow="hidden"
                             component="img"
                             src={apodData.hdurl}
                             alt={apodData.title}
