@@ -64,7 +64,7 @@ export default async function ApodPage() {
                             borderColor="grey.300"
                             borderRadius={2}
                             component="img"
-                            src={apodData.url}
+                            src={apodData.hdurl}
                             alt={apodData.title}
                             sx={{ maxWidth: '100%', height: 'auto' }}
                         />
