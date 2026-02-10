@@ -7,7 +7,7 @@ export default function ApodPage() {
     return (
         <Box>
             <Link href="/">Back</Link>
-            <Typography>API Key: {APOD_KEY}</Typography>
+            <Typography>NASA API Key: {APOD_KEY}</Typography>
         </Box>
     )
 }
