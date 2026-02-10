@@ -14,8 +14,13 @@ interface ApodData {
     url: string;
 }
 
-async function fetchApodData(): Promise<ApodData> {
-    const response = await fetch(APOD_URL, {
+async function fetchApodData(date?: string): Promise<ApodData> {
+    let apiUrl = APOD_URL;
+    console.log("DatePassed", date);
+    if (date) {
+        apiUrl += `&date=${date}`;
+    }
+    const response = await fetch(apiUrl, {
         next: { revalidate: 3600 } // Cache for 1 hour
     });
     
@@ -26,19 +31,27 @@ async function fetchApodData(): Promise<ApodData> {
     return response.json();
 }
 
-export default async function ApodPage() {
+export default async function ApodPage({
+    searchParams,
+}: {
+    searchParams: Promise<{ date?: string }>
+}) {
     let apodData: ApodData | null = null;
     let error: string | null = null;
 
+    // Extract the date parameter from search params
+    const resolvedSearchParams = await searchParams;
+    const dateParam = resolvedSearchParams.date;
+
     try {
-        apodData = await fetchApodData();
+        apodData = await fetchApodData(dateParam);
     } catch (err) {
         error = err instanceof Error ? err.message : 'An unknown error occurred';
     }
 
     return (
         <Box>
-            <Link href="/">Back</Link>
+            <Link href="/">Home</Link>
             <Typography>NASA API Key: {APOD_KEY}</Typography>
             
             {error && (
